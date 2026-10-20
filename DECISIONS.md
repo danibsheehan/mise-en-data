@@ -6,9 +6,10 @@
 - **Movements:** Soviet Montage, German Expressionism, French Impressionism.
 - **Metrics:** average shot length, shot-length distribution, luminance contrast. Motion is an optional stretch goal. Color palette is dropped (the films are black and white or tinted).
 - **Pipeline:** Python (PySceneDetect, OpenCV), run offline, outputs JSON.
-- **Backend:** Go 1.22+, standard library `net/http`, SQLite via `modernc.org/sqlite` (pure Go, no CGO).
+- **Backend:** Go 1.22+, standard library `net/http`, no database. The pipeline output and curated content are JSON embedded in the binary with `go:embed`, loaded and validated once at startup (Option A).
 - **Frontend:** React + TypeScript + Vite, D3 for charts.
-- **Deploy:** one Docker image with the built frontend embedded in the Go binary, on Fly.io. Fly app names are globally unique, so a variant such as `mise-en-data-app` may be needed.
+- **API contract:** hand-written TypeScript types in `client/src/api/types.ts`, checked by a Go golden-JSON test. OpenAPI is a later follow-up.
+- **Hosting:** frontend on GitHub Pages at the default `github.io/mise-en-data/` path; API on Cloud Run in a new GCP project. Reusable workflows from `dani-actions` where they exist, plus a small in-repo Python CI job for the pipeline.
 - **Repo structure:** `client/` (React), `server/` (Go module), `pipeline/` (Python).
 - **Go module path:** `github.com/danibsheehan/mise-en-data/server`
 - **Repo:** public, MIT license.
@@ -19,6 +20,16 @@
 
 - Claim wording and source texts (steps 1-2).
 - Final 16-film list (step 6).
+
+## Revisit after first deploy
+
+- **A database.** Options: a read-only SQLite file built into the image, or a new Supabase project (the last free slot; musing uses the other). Not needed now: the data is a few hundred KB, read-only and regenerated offline.
+
+## Rationale (2026-10-20)
+
+- **No database:** nothing requires one. A database would add failure modes (for example Supabase pausing free projects after a week of inactivity) and no capability.
+- **Pages + Cloud Run:** keeps cost close to $0 and matches the setup in musing and caught-looking, so maintenance is familiar.
+- **Superseded:** the original handoff choices of SQLite via `modernc.org/sqlite` and a single Docker image on Fly.io, with the frontend embedded in the Go binary.
 
 ## Rights and data-source terms
 
