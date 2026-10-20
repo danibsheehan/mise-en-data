@@ -10,6 +10,8 @@
 - **Frontend:** React + TypeScript + Vite, D3 for charts.
 - **API contract:** hand-written TypeScript types in `client/src/api/types.ts`, checked by a Go golden-JSON test. OpenAPI is a later follow-up.
 - **Hosting:** frontend on GitHub Pages at the default `github.io/mise-en-data/` path; API on Cloud Run in a new GCP project. Reusable workflows from `dani-actions` where they exist, plus a small in-repo Python CI job for the pipeline.
+- **Data location:** pipeline output and the author's curated content live as JSON in `server/internal/dataset/data/`. Pipeline files are generated and never hand-edited; curated files are the author's.
+- **Dependabot:** `main` already covers GitHub Actions. Entries for gomod (`/server`), npm (`/client`) and pip (`/pipeline`) are added in the chunk where each ecosystem first lands.
 - **Repo structure:** `client/` (React), `server/` (Go module), `pipeline/` (Python).
 - **Go module path:** `github.com/danibsheehan/mise-en-data/server`
 - **Repo:** public, MIT license.
