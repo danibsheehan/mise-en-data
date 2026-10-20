@@ -12,11 +12,12 @@ supported / Inconclusive) backed by measurements. Scope and decisions are logged
 ## Stack
 
 - `client/` — React + TypeScript + Vite frontend, D3 for charts.
-- `server/` — Go 1.22+ API using standard library `net/http` and SQLite via
-  `modernc.org/sqlite` (pure Go, no CGO). Module path:
+- `server/` — Go 1.22+ API using standard library `net/http`, no database: pipeline output
+  and curated content are JSON embedded with `go:embed` and loaded at startup. Module path:
   `github.com/danibsheehan/mise-en-data/server`.
 - `pipeline/` — Python (PySceneDetect, OpenCV) fingerprint pipeline, run offline, outputs
   JSON.
+- Hosting: frontend on GitHub Pages, API on Cloud Run. See `DECISIONS.md`.
 
 ## Install
 
