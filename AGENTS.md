@@ -17,7 +17,6 @@ supported / Inconclusive) backed by measurements. Scope and decisions are logged
   `github.com/danibsheehan/mise-en-data/server`.
 - `pipeline/` — Python (PySceneDetect, OpenCV) fingerprint pipeline, run offline, outputs
   JSON.
-- Deploy: one Docker image with the built frontend embedded in the Go binary, on Fly.io.
 
 ## Install
 
