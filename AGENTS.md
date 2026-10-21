@@ -50,6 +50,8 @@ follow Conventional Commits). Stack-specific jobs are added as each part of the 
   `foundations:branch-naming`'s `<type>/<slug>` convention, then open a PR — even for small
   or config-only changes.
 - **Host theory texts.** Link to them, never host them.
+- **Show frames from restored or scored film versions**, or add a film whose chosen version has
+  new or recreated intertitles or colour. See "Rights posture" in `DECISIONS.md`.
 - **Add out-of-scope work**: a blog write-up, any LLM feature, user accounts, or movements
   beyond the three.
 
